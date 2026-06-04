@@ -12,7 +12,7 @@
 
 *MENTOR*: NEELA SANTHOSH KUMAR
 
-# TASK1:Text Summarization Tool:
+# TASK1_Text_Summarization_Tool:
 
 An extractive text summarization tool built in Python. This tool uses natural language processing (NLP) techniques to identify the most critical sentences in a given text and generates a concise summary based on frequency analysis.
 
@@ -35,7 +35,7 @@ stopwords – A list of common filler words (e.g., "the", "is", "and") to ignore
 # Concept & Core Logic:
 
 This script implements Extractive Summarization. Instead of generating completely new sentences, it ranks existing sentences from the original text and extracts the most important ones.The tool processes text through a four-step pipeline:
-1. Text Preprocessing & TokenizationThe raw text is split into individual sentences using sent_tokenize() and individual words using word_tokenize(). All words are converted to lowercase to ensure consistency during evaluation.
-2. Word Frequency CalculationThe tool filters out "stop words" and punctuation marks because they do not carry significant semantic meaning. It then counts how often each remaining word appears. To prevent longer texts from skewing the results, frequencies are normalized by dividing each word's count by the frequency of the most common word: {Normalized Frequency} = word count/maximum word count
-4. Sentence ScoringThe script iterates through each sentence and calculates a total importance score. The score of a sentence is the sum of the normalized frequencies of the words it contains. Sentences containing highly frequent, meaningful keywords naturally receive higher scores.
-5. Sentence Selection & SortingBased on the user-defined summary_ratio (e.g., 0.5 for 50% of the original length), the heapq.nlargest function extracts the top-scoring sentences. Finally, these selected sentences are re-sorted back into their original order of appearance to maintain narrative flow and readability before being stitched back into a final string.
+1. Text Preprocessing & Tokenization:The raw text is split into individual sentences using sent_tokenize() and individual words using word_tokenize(). All words are converted to lowercase to ensure consistency during evaluation.
+2. Word Frequency Calculation:The tool filters out "stop words" and punctuation marks because they do not carry significant semantic meaning. It then counts how often each remaining word appears. To prevent longer texts from skewing the results, frequencies are normalized by dividing each word's count by the frequency of the most common word: {Normalized Frequency} = word count/maximum word count
+4. Sentence Scoring:The script iterates through each sentence and calculates a total importance score. The score of a sentence is the sum of the normalized frequencies of the words it contains. Sentences containing highly frequent, meaningful keywords naturally receive higher scores.
+5. Sentence Selection & Sorting:Based on the user-defined summary_ratio (e.g., 0.5 for 50% of the original length), the heapq.nlargest function extracts the top-scoring sentences. Finally, these selected sentences are re-sorted back into their original order of appearance to maintain narrative flow and readability before being stitched back into a final string.
