@@ -16,7 +16,7 @@
 
 An extractive text summarization tool built in Python. This tool uses natural language processing (NLP) techniques to identify the most critical sentences in a given text and generates a concise summary based on frequency analysis.
 
-# Requirements & Tools Used:
+## Requirements & Tools Used:
 
 To run this tool, you need  
 
@@ -32,7 +32,7 @@ NLTK Data Packages:punkt & punkt_tab – Models used for dividing text into sent
 
 stopwords – A list of common filler words (e.g., "the", "is", "and") to ignore during analysis.
 
-# Concept & Core Logic:
+## Concept & Core Logic:
 
 This script implements Extractive Summarization. Instead of generating completely new sentences, it ranks existing sentences from the original text and extracts the most important ones.The tool processes text through a four-step pipeline:
 1. Text Preprocessing & Tokenization:The raw text is split into individual sentences using sent_tokenize() and individual words using word_tokenize(). All words are converted to lowercase to ensure consistency during evaluation.
