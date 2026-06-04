@@ -1,0 +1,6 @@
+--- SPEECH RECOGNITION SYSTEM ---
+Reading audio file and reducing background noise...
+Transcribing audio using pre-trained model...
+
+--- TRANSCRIPTION RESULT ---
+free online resource for downloading sample files in a wide variety of digital formats whether you are a software testing file upload functionality a quality assurance engineer validating media players a student learning about digital formats or simply someone who needs a quick test files that you can download
