@@ -12,70 +12,122 @@
 
 *MENTOR*: NEELA SANTHOSH KUMAR
 
-# TASK1_Text_Summarization_Tool:
+## 📁 Project Structure
 
-An extractive text summarization tool built in Python. This tool uses natural language processing (NLP) techniques to identify the most critical sentences in a given text and generates a concise summary based on frequency analysis.
-
-## Requirements & Tools Used:
-
-To run this tool, you need  
-
-Python 3.x and the following libraries:
-
-Python Libraries:nltk (Natural Language Toolkit) – For tokenization and text preprocessing.
-
-heapq – A built-in Python module used to efficiently retrieve the highest-scoring sentences.
-
-string – A built-in module used to handle and filter out punctuation.
-
-NLTK Data Packages:punkt & punkt_tab – Models used for dividing text into sentences and words.
-
-stopwords – A list of common filler words (e.g., "the", "is", "and") to ignore during analysis.
-
-## Concept & Core Logic:
-
-This script implements Extractive Summarization. Instead of generating completely new sentences, it ranks existing sentences from the original text and extracts the most important ones.The tool processes text through a four-step pipeline:
-1. Text Preprocessing & Tokenization:The raw text is split into individual sentences using sent_tokenize() and individual words using word_tokenize(). All words are converted to lowercase to ensure consistency during evaluation.
-2. Word Frequency Calculation:The tool filters out "stop words" and punctuation marks because they do not carry significant semantic meaning. It then counts how often each remaining word appears. To prevent longer texts from skewing the results, frequencies are normalized by dividing each word's count by the frequency of the most common word: {Normalized Frequency} = word count/maximum word count
-4. Sentence Scoring:The script iterates through each sentence and calculates a total importance score. The score of a sentence is the sum of the normalized frequencies of the words it contains. Sentences containing highly frequent, meaningful keywords naturally receive higher scores.
-5. Sentence Selection & Sorting:Based on the user-defined summary_ratio (e.g., 0.5 for 50% of the original length), the heapq.nlargest function extracts the top-scoring sentences. Finally, these selected sentences are re-sorted back into their original order of appearance to maintain narrative flow and readability before being stitched back into a final string.
-
-# TASK2_SPEECH_TO_TEXT:
-
-*Audio Transcription Tool*
-An automated speech-to-text application built in Python. This tool processes local audio files, optimizes them by filtering out background noise, and utilizes cloud-based deep learning models to convert spoken audio into written text.
-
-## Technologies Used:
-Python: The underlying runtime environment and programming language.
-
-SpeechRecognition (Library): A comprehensive Python wrapper that interfaces with multiple speech-to-text APIs.
-
-Google Speech Recognition API: The cloud-based engine used to process, analyze, and decode the audio data into text.
-
-OS Module (Python Standard Library): Utilized for system-level file verification to prevent application crashes.
-
-## Requirements & Installation:
-To run this tool locally, you need Python 3.x and the SpeechRecognition library installed.
-```bash
-pip install SpeechRecognition
+```text
+CODTECH-IT/
+│
+├── Task1_Text_Summarization/
+│   ├── main.py
+│   └── output.txt
+│
+├── Task2_Speech_to_text/
+│   ├── main.py
+│   ├── output.txt
+│   └── test.wav
+│
+├── Task3_Neural_style_transfer/
+│   ├── art_style.jpg
+│   ├── main.py
+│   ├── my_photo.jpg
+│   └── styled_output.jpg
+│
+└── Task4_Text_Generation_Model/
+    └── main.py
 ```
 
-## Concept & Core Logic:
-This script operates as a Speech-to-Text Pipeline. It works by digitizing a static audio file, cleaning up its acoustic profile, and forwarding it to a remote acoustic machine learning model for linguistic translation.
+# 📝 Task 1: Text Summarization Tool
 
-The tool processes audio through a three-step pipeline:
+### Concept
 
-1. Environment Verification & Initialization
-The tool instantiates a Recognizer class, which serves as the control center for configuring and running speech recognition tasks. Before touching the file, the script explicitly verifies that the specified audio path exists, preventing standard runtime path errors.
+An extractive summarization tool that processes long blocks of text, analyzes keyword importance, and extracts the most high-value sentences to form a shortened summary without altering the original structural context.
 
-2. Audio Conditioning & RecordingThe audio file is safely opened and read using sr.AudioFile. The pipeline then applies two critical adjustments:adjust_for_ambient_noise: Reads the first $0.5$ seconds of the file to gauge background static, dynamically recalibrating the energy threshold to filter out noise.record: Extracts the actual vocal wavelengths from the source file and saves them into a specific object model memory buffer (audio_data).
+### Requirements & Tools
+Python 3.8+
 
-3. Cloud-Based Transcription & Error Handling
-The finalized audio data is transmitted securely to Google's acoustic engine via recognize_google(), which returns the corresponding string output.
+nltk corporate datasets (punkt, punkt_tab, stopwords)
 
-  The entire process is wrapped inside an exception block to gracefully manage common real-world failures:
+heapq module (Python standard library)
 
-  UnknownValueError: Triggers if the file is completely silent, warped, or missing discernable human speech structures.
+### Technologies Used
+NLTK (Natural Language Toolkit): Utilized for text processing operations, specifically sentence and word tokenization.
 
-  RequestException: Triggers if your machine loses internet connectivity or if the remote cloud API server is temporarily unreachable.
+### Key Features
+Frequency Scoring Engine: Strips out English stop words and punctuation to count raw word frequencies, normalizing them against the most frequent token.
 
+Sentence Ranking: Dynamically scores individual sentences by compiling their inner word weights, picking top results cleanly via heapq.nlargest
+
+# 📝 Task 2: Speech to Text
+### Concept
+An Automated Speech Recognition (ASR) framework designed to take local audio track file inputs (.wav) containing spoken English and translate acoustic frequencies into readable text strings.
+
+### Requirements & Tools
+Python 3.8+
+
+Target audio track asset (test.wav)
+
+Active network connection (for cloud API validation)
+
+### Technologies Used
+SpeechRecognition Library: A flexible Python interface for interacting with popular speech-to-text decoding suites.
+
+Google Speech Recognition API: Cloud-hosted, pre-trained deep learning networks that handle speech decoding.
+
+### Key Features
+Ambient Noise Reduction: Employs adjust_for_ambient_noise to sample background static before parsing, maximizing transcription accuracy.
+
+Error Handling Blocks: Uses robust try-catch mechanisms to handle blurry audio or sudden service dropouts gracefully.
+
+# 📝 Task 3: Neural Style Transfer
+### Concept
+An advanced computer vision application that blends a content photograph with an artistic style painting. It extracts the global layout shapes of your photo and overlays them with the colors and brushstroke patterns of the artwork.
+
+### Requirements & Tools
+Python 3.8+
+
+Input assets (my_photo.jpg and art_style.jpg)
+
+CUDA-capable GPU (Optional, falls back to CPU automatically)
+
+### Technologies Used
+PyTorch & Torchvision: Core deep learning framework used for image transformations and tensor mathematical calculations.
+
+VGG-19 Network: A foundational convolutional neural network trained on millions of images, used to extract deep artistic traits.
+
+### Key Features
+Gram Matrix Formula: Isolates artistic textures and style details from the reference artwork while discarding layout boundaries.
+
+In-Place Memory Patch: Disables VGG-19's default in-place ReLU operations (inplace=False) to secure memory pipelines and avoid execution runtime crashes.
+
+# 📝 Task 4: Text Generation Model
+### Concept
+An autoregressive natural language generation system that reads open-ended conversational text prompts from the user and automatically predicts a high-quality continuation paragraph.
+
+### Requirements & Tools
+Python 3.8+
+
+CLI interactive loop terminal
+
+Hardware-agnostic layout (runs reliably on a standard laptop CPU)
+
+### Technologies Used
+Hugging Face Transformers: Used to fetch and execute pre-trained transformer pipelines easily.
+
+GPT-2 (Generative Pre-trained Transformer 2): OpenAI’s language transformer model trained for sequential context prediction.
+
+### Key Features
+Advanced Decoding Parameters: Couples Top-K (50) and Top-p (0.92 / Nucleus) sampling with a calibrated temperature=0.8. This prevents repetitive phrases and keeps text outputs creative yet coherent.
+
+🚀 Installation & Quick Start
+To configure your environment and run these modules, execute the following commands in your terminal:
+
+1. Install All Dependencies
+  ```bash
+3. pip install torch torchvision nltk transformers SpeechRecognition Pillow
+```
+4. Run an Application
+Navigate into the respective task directory and execute the main Python entry point:
+ ```bash
+cd Task4_Text_Generation_Model
+python main.py
+```
